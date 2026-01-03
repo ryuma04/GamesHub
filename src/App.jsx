@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import close_button from './assets/close_button.jpg'
 
-//Note: For checking what the are the info that a particular api returns can be checked 
-//      in the console by just printing the data in console.log() after fetching it
-
 const API_KEY = import.meta.env.VITE_API_KEY;
   
 //layout of the game in the card
@@ -63,8 +60,6 @@ function SearchBar({onselect, onclickedGame}){
         <input type="text" placeholder="Enter game name..." className="searchbar" onChange={(e)=>setsearch(e.target.value)}></input>
       </div>
 
-      {/* when the suggestion array is not empty, then only the list will be shown */}
-      {/* here curly braces are used to indicate the js code in html */}
       {suggestion.length>0?
         (<ul className="game-dropdown-list">
          {suggestion.map((game) => (
@@ -171,9 +166,7 @@ function App(){
         const response=await fetch(url);
         const data= await response.json();
 
-        //data
-        //if the current page is 1 it will directly fetch the game, else it will fetch 
-        //the pages and append it with the previous pages
+       
         if (currentPage==1){
           setgames(data.results);//data is fetched and stored
         }
@@ -191,17 +184,13 @@ function App(){
   //dependency is set to current page, thus will execute when the page number changes
 
   return(
-    //this div is used for wrapping all the elements of the app component
     <div>
       <h1>GamesHub</h1>
       <SearchBar onselect={(game)=>{setSelectedGame(game)}} onclickedGame={setclickedGame}/>
-      {/* this div is used for adjusting the game card design */}
       <div className="cards">
-        {/* mapping the game in the gamecard component by giving the props as the element of the games array */}
         {games.map((game) => (<GameCard key={game.id} games={game} onClick={()=>setclickedGame(game)}/>))}
       </div>
 
-      {/* load more games by increasing the page number in the api */}
       <div className="load-more">
         <button className="load-more-button" onClick={()=>{setcurrentPage(prev=>prev+1)}}>
           Load more games
