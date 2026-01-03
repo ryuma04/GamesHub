@@ -1,16 +1,66 @@
-# React + Vite
+🎮 GamesHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GamesHub is a sleek, high-performance game discovery platform built with React and powered by the RAWG Video Games Database API. It offers a seamless way for users to explore over half a million games, search for specific titles, and view detailed information including metacritic scores, genres, and screenshot galleries.
 
-Currently, two official plugins are available:
+🚀 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Live Search with Debouncing: Optimized search functionality that updates as you type. It utilizes a custom "debounce" logic to minimize API calls and ensure a smooth user experience.
 
-## React Compiler
+Infinite Pagination: Browse an endless catalog of games using the "Load More" feature, which dynamically appends data batches of 20 games to the existing list.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Dynamic Discovery Grid: A responsive, dark-themed grid layout showcasing game posters, titles, and professional critic scores.
 
-## Expanding the ESLint configuration
+Interactive Details Modal: A "Big Div" overlay that provides an immersive look at specific games, including release dates, platform compatibility, and a dedicated screenshot gallery.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Metacritic Integration: Professional scores are color-coded (Green/Yellow/Red) to provide instant visual feedback on game quality.
+
+🛠️ Tech Stack
+
+Framework: React.js
+
+API: RAWG API
+
+Styling: Custom CSS (including Backdrop Blurs and Flexbox/Grid systems)
+
+State Management: React Hooks (useState, useEffect)
+
+📦 Getting Started
+
+Follow these steps to get the project up and running locally:
+
+1. Clone the repository
+
+git clone [https://github.com/your-username/gameshub.git](https://github.com/ryuma04/GamesHub.git)
+cd GamesHub
+
+
+2. Install dependencies
+
+npm install
+
+
+3. Get your API Key
+
+Go to RAWG.io and create a free account.
+
+Generate your personal API Key.
+
+
+4. Start the development server
+
+npm run dev
+
+
+📈 Learning Milestones
+
+Building this project involved mastering several core React and Frontend concepts:
+
+Asynchronous Data Handling: Fetching and parsing data from a third-party REST API.
+
+Component Architecture: Creating reusable sub-components like SearchBar, GameCard, and GameDetail.
+
+Prop Drilling & Lifting State: Synchronizing data flow between the search bar and the main application container.
+
+Optimizing Performance: Implementing cleanup functions in useEffect to manage timers and prevent memory leaks.
+
+Built with ❤️ as a React learning project.
