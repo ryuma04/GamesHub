@@ -1,0 +1,439 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f0f0f;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+/* a div for breaking the line */
+.line-break{
+  width: 100%;
+  height:0;
+}
+
+/* Cards Container - Multiple cards per row */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 30px;
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Individual Card - Vertical layout */
+.game-card {
+  background-color: #202020;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  height: 100%; /* Ensure card takes full height */
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Card Image - Full width at top */
+.game-img-on-the-card {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block; /* Remove any inline spacing */
+}
+
+.game-card:hover .game-img-on-the-card {
+  transform: scale(1.05);
+}
+
+/* Card Info Section - Below image */
+.game-info-on-the-card {
+  padding: 5px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Game Name - Below image */
+.game-name-on-the-card {
+  text-align: center;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+/* Game Description/Info */
+.game-description {
+  color: #aaa;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+/* Release Date */
+.release-date {
+  color: #888;
+  font-size: 0.9rem;
+  margin-top: auto; /* Push to bottom */
+}
+
+/* Meta Score Badge */
+.meta-score {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  background-color: #1e1e1e;
+  border: 1px solid #44d62c;
+  color: #44d62c;
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+/* Rating Display */
+.rating {
+  color: #ffd700;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Page Title */
+h1 {
+  text-align: center;
+  padding: 40px 0 10px;
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+
+/* search bar div */
+.search {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+/* search bar textbox */
+.searchbar {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #202020;
+  border: 2px solid #333;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.searchbar::placeholder {
+  color: #666;
+}
+
+
+.searchbar:hover {
+  border-color: #444;
+}
+
+/* drop down stlying */
+.game-dropdown-list {
+  list-style: none;
+  background-color: #202020;
+  border: 2px solid #333;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: -10px auto 20px;
+  padding: 0;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid #333;
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.search-item:hover {
+  background-color: #2a2a2a;
+}
+
+.search-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.search-item span {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+
+/* game detail popup styling */
+.game-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-image: url(${game.background_image}); */
+}
+
+.game-detail-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: -1;
+}
+
+/* Top section with background image */
+.game-detail-top-section {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  margin: 0 auto;
+}
+
+.game-detail-top-section-game_background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-detail-top-section-close_button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  padding: 8px;
+  transition: all 0.2s;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.game-detail-top-section-close_button:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Middle section with game info */
+.game-detail-middle-section {
+  background-color: #1a1a1a;
+  padding: 30px 30px 20px 30px;
+  width:600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.game-detail-middle-section h3 {
+  font-size: 32px;
+  margin: 0 120px 10px 0;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.game-detail-middle-section-metacritic {
+  position: absolute;
+  top: -25px;
+  right: 30px;
+  background-color: #9cff2e;
+  color: #000;
+  padding: 15px 22px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 26px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-detail-middle-section-game_release {
+  color: #888;
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Info section with pills - THIS IS THE KEY CHANGE */
+.game-detail-info-section {
+  background-color: #1a1a1a;
+  padding: 15px 30px 25px 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.game-detail-info-section-genre,
+.game-detail-info-section-platform {
+  background-color: #7c3aed;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.game-detail-info-section-platform {
+  background-color: #8b5cf6;
+}
+
+/* Gallery section */
+.game-detail-gallery {
+  background-color: #1a1a1a;
+  padding: 0 30px 30px 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  border-radius: 0 0 16px 16px;
+}
+
+.game-detail-gallery-screenshot {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.game-detail-gallery-screenshot:hover {
+  transform: scale(1.05);
+}
+
+
+/* load more games section styling */
+.load-more{
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.load-more-button{
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.load-more-btn:hover {
+  background-color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+
+/* Responsive */
+@media (max-width: 650px) {
+  .game-detail-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive Design - Adjust cards per row based on screen size */
+
+/* Large screens: 4 cards per row (default) */
+@media (max-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  }
+}
+
+/* Medium screens: 3 cards per row */
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    gap: 25px;
+    padding: 30px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .game-img-on-the-card {
+    height: 180px;
+  }
+}
+
+/* Small screens: 1 card per row */
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr); /* 1 card per row */
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .game-name-on-the-card {
+    font-size: 1.1rem;
+  }
+  
+  .game-img-on-the-card {
+    height: 200px;
+  }
+}
